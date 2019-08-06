@@ -1,3 +1,3 @@
-# GCP Function for Mailgun email sending
+# Firebase Function for microservices
 
 Deploy: `firebase deploy`
