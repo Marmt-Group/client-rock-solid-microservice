@@ -12,11 +12,11 @@ const createEmail = (data) => {
     const { name, email, company, message } = data
 
     return {
-        from: 'davidjamesdavis.djd@gmail.com',
-        subject: 'New Marmt Inquiry from ' + company,
+        from: 'concretecoating@gmail.com',
+        subject: 'New Rock Solid Inquiry from ' + company,
         text: message,
-        html: '<p>Message from: ' + name + ': ' + message + '</p>',
-        to: 'theedoubled@gmail.com',
+        html: '<p>Message from: ' + name + ':</p><p>' + message + '</p>',
+        to: 'concretecoating@gmail.com',
         'h:Reply-To': email
     }
 }
@@ -26,7 +26,7 @@ app.post('/', async (req, res) => {
     const client = req.query.mg_key
 
     // Get a Mailgun client
-    const mailgun = new Mailgun({ apiKey: client, domain: 'sandboxc33e3cce97ba4056a2cda617798410ee.mailgun.org' })
+    const mailgun = new Mailgun({ apiKey: client, domain: 'coatedconcrete.com' })
 
     const result = createEmail(req.body)
 
@@ -36,7 +36,7 @@ app.post('/', async (req, res) => {
                 if (error) {
                     res.status(500).json({ error: error })
                 }
-                res.status(200).json({ body: body })
+                res.status(200).json({ body: body.message })
             })
     } catch (error) {
         next(error)
